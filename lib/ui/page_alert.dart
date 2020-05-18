@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'my_lib.dart' as lib;
+import '../my_lib.dart' as lib;
 
 class PageAlert extends StatefulWidget {
   @override
@@ -106,7 +106,9 @@ class _PageAlertState extends State<PageAlert> {
                     text: "Toast",
                     color: Colors.white,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+
+                  },
                 ),
               ),
 

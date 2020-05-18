@@ -1,9 +1,9 @@
 import 'package:aplikasi/list/page_api.dart' as listCorona;
 import 'package:aplikasi/model/model_countries.dart';
-import 'package:aplikasi/page_alert.dart';
-import 'package:aplikasi/page_login.dart';
-import 'package:aplikasi/page_profile.dart';
-import 'package:aplikasi/page_setting.dart';
+import 'package:aplikasi/ui/page_alert.dart';
+import 'package:aplikasi/ui/page_login.dart';
+import 'package:aplikasi/ui/page_profile.dart';
+import 'package:aplikasi/ui/page_setting.dart';
 import 'package:flutter/material.dart';
 
 class PageTab extends StatefulWidget {
