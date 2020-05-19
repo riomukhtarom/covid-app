@@ -1,27 +1,46 @@
 import 'package:aplikasi/api/api_corona.dart';
+import 'package:aplikasi/bloc/province_bloc.dart';
 import 'package:aplikasi/bloc/user_bloc.dart';
 import 'package:aplikasi/model/model_countries.dart';
 import 'package:aplikasi/model/model_country.dart';
-import 'package:aplikasi/list/page_api.dart' as listCorona;
-import 'package:aplikasi/ui/page_login.dart';
-import 'package:aplikasi/ui/page_notif.dart';
-import 'package:aplikasi/ui/page_profile.dart' as profile;
-import 'package:aplikasi/ui/page_alert.dart' as alert;
-import 'package:aplikasi/ui/page_setting.dart';
-import 'package:aplikasi/ui/page_favorite.dart';
+import 'package:aplikasi/ui/page_home_covid.dart';
 import 'package:aplikasi/ui/page_tab.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'dart:developer' as developer;
 import 'dart:convert';
 
-// Notification
+import 'bloc/countries_bloc.dart';
+import 'bloc/country_bloc.dart';
+
+// Main for Corona
+void main() => runApp(CovidApp());
+
+class CovidApp extends StatelessWidget {
+  final String _title = 'Covid19 Update';
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CountryBloc>(create: (context) => CountryBloc()..add('indonesia')),
+        BlocProvider<ProvinceBloc>(create: (context) => ProvinceBloc()..add('')),
+        BlocProvider<CountriesBloc>(create: (context) => CountriesBloc()..add('')),
+      ],
+      child: MaterialApp(
+        title: _title,
+        home: PageHomeCovid(title: _title),
+      ),
+    );
+  }
+}
+
+// Main for Notification
 //void main() => runApp(NotifApp());
 
 // Favorite
-void main() => runApp(MyApp());
+//void main() => runApp(MyApp());
 
 //void main() => runApp(MyApp(country: getCountries()));
 
@@ -44,14 +63,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       home: BlocProvider(
-        builder: (context) => UserBloc(),
+        create: (context) => UserBloc(),
 //        child: PageFavorite(),
         child: PageTab(country: country),
       ),
     );
   }
 }
-
 
 Future<List<Countries>> getCountries() {
   return ApiCorona.getCountries();
@@ -89,7 +107,3 @@ Future<List<Country>> fetchCountry() async {
 //     throw Exception('Failed');
 //   }
 // }
-
-
-
-

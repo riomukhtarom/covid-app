@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:aplikasi/model/model_countries.dart';
 import 'package:aplikasi/model/model_country.dart';
 import 'package:aplikasi/model/model_province.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ApiCorona {
@@ -46,7 +47,8 @@ class ApiCorona {
     //         }
     //     }
     // ]
-    
+
+    debugPrint('Loading Data Covid in World ...');
     String url = "https://api.kawalcorona.com";
     var result = await http.get(url);
     List<Countries> countries = [];
@@ -59,8 +61,9 @@ class ApiCorona {
         var country = (listResponse[i] as Map<String, dynamic>)['attributes'];
         countries.add(Countries.toCountries(country));
       }
+      int length = countries.length;
+      debugPrint('Success to load $length data Covid in World');
       return countries;
-
     } else {
       throw Exception('failed');
     }
@@ -87,8 +90,9 @@ class ApiCorona {
       var jsonObject = json.decode(result.body);
       List<dynamic> listResponse = jsonObject.cast<Map<String, dynamic>>();
       Country country = Country.toCountry(listResponse[0]);
+      String name = country.country;
+      debugPrint('Success to load data covid $name');
       return country;
-
     } else {
       throw Exception('failed');
     }
@@ -122,7 +126,7 @@ class ApiCorona {
     //         }
     //     }
     // ]
-
+    debugPrint('Loading data Covid in Indonesia ...');
     String url = "https://api.kawalcorona.com/indonesia/provinsi";
     var result = await http.get(url);
     List<Province> listProvince = [];
@@ -135,6 +139,8 @@ class ApiCorona {
         var province = (listResponse[i] as Map<String, dynamic>)['attributes'];
         listProvince.add(Province.toProvince(province));
       }
+      int length = listProvince.length;
+      debugPrint('Success to load $length data Covid in Indonesia');
       return listProvince;
 
     } else {

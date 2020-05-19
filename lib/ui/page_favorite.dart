@@ -21,7 +21,7 @@ class PageFavorite extends StatelessWidget {
           RaisedButton(
             child: Text("Tekan saya"),
             onPressed: () {
-              bloc.dispatch(random.nextInt(4) + 2);
+              bloc.add(random.nextInt(4) + 2);
             },
           ),
           BlocBuilder<UserBloc, User>(

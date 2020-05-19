@@ -65,7 +65,7 @@ class PageProfile extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => BlocProvider(
-                                builder: (context) => UserBloc(),
+                                create: (context) => UserBloc(),
                                 child: PageFavorite(),
                               ),
                             ),

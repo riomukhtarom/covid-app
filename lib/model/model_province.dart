@@ -15,3 +15,5 @@ class Province {
     );
   }
 }
+
+class UnitializedProvince extends Province{}
