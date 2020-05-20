@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 
 class CountryBloc extends Bloc<String, Country> {
   @override
-  Country get initialState => Country();
+  Country get initialState => CountryUninitialized();
 
   @override
   Stream<Country> mapEventToState(String event) async* {
@@ -14,6 +14,7 @@ class CountryBloc extends Bloc<String, Country> {
       yield country;
     } catch (e){
       debugPrint(e.toString());
+      yield CountryError();
     }
   }
 }

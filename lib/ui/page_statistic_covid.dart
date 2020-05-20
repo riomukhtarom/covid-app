@@ -1,16 +1,14 @@
 import 'package:aplikasi/bloc/country_bloc.dart';
 import 'package:aplikasi/model/model_country.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PageStatisticCovid extends StatelessWidget {
-
   final String confirmed = '0';
 
   @override
   Widget build(BuildContext context) {
-    CountryBloc bloc = BlocProvider.of<CountryBloc>(context);
-//    bloc.dispatch('indonesia');
     return Container(
       child: Column(
         children: <Widget>[
@@ -44,6 +42,7 @@ class PageStatisticCovid extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.fromLTRB(16, 4, 16, 4),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Container(
                     child: Icon(
@@ -64,24 +63,48 @@ class PageStatisticCovid extends StatelessWidget {
                         ),
                         BlocBuilder<CountryBloc, Country>(
                             builder: (context, country) {
-                          if (country.country != null) {
-                            debugPrint('Show update data');
+                          if (country is CountryUninitialized) {
+                            debugPrint('Show loading data Country');
+                            return Container(
+                              padding: EdgeInsets.fromLTRB(24, 8, 24, 8),
+                              height: 60,
+                              child: Center(
+                                child: SizedBox(
+                                  child: CircularProgressIndicator(),
+                                  height: 20,
+                                  width: 20,
+                                ),
+                              ),
+                            );
+                          } else if (country is CountryError) {
+                            debugPrint('Show error data Country');
                             return Text(
-                              country.confirm,
+                              '-',
                               style: TextStyle(
-                                fontSize: 46,
+                                fontSize: 50,
                                 color: Colors.amber,
                               ),
                             );
                           } else {
-                            debugPrint('Show no data');
-                            return Text(
-                              '000000',
-                              style: TextStyle(
-                                fontSize: 46,
-                                color: Colors.amber,
-                              ),
-                            );
+                            if (country.country.isNotEmpty) {
+                              debugPrint('Show update data Country');
+                              return Text(
+                                country.confirm,
+                                style: TextStyle(
+                                  fontSize: 50,
+                                  color: Colors.amber,
+                                ),
+                              );
+                            } else {
+                              debugPrint('Show no data');
+                              return Text(
+                                '-',
+                                style: TextStyle(
+                                  fontSize: 50,
+                                  color: Colors.amber,
+                                ),
+                              );
+                            }
                           }
                         }),
                       ],
@@ -116,26 +139,50 @@ class PageStatisticCovid extends StatelessWidget {
                         ),
                         BlocBuilder<CountryBloc, Country>(
                             builder: (context, country) {
-                              if (country.country != null) {
-                                debugPrint('Show update data');
-                                return Text(
-                                  country.deaths,
-                                  style: TextStyle(
-                                    fontSize: 46,
-                                    color: Colors.red,
-                                  ),
-                                );
-                              } else {
-                                debugPrint('Show no data');
-                                return Text(
-                                  '000000',
-                                  style: TextStyle(
-                                    fontSize: 46,
-                                    color: Colors.red,
-                                  ),
-                                );
-                              }
-                            }),
+                          if (country is CountryUninitialized) {
+                            debugPrint('Show loading data Country');
+                            return Container(
+                              padding: EdgeInsets.fromLTRB(24, 8, 24, 8),
+                              height: 60,
+                              child: Center(
+                                child: SizedBox(
+                                  child: CircularProgressIndicator(),
+                                  height: 20,
+                                  width: 20,
+                                ),
+                              ),
+                            );
+                          } else if (country is CountryError) {
+                            debugPrint('Show error data Country');
+                            return Text(
+                              '-',
+                              style: TextStyle(
+                                fontSize: 50,
+                                color: Colors.red,
+                              ),
+                            );
+                          } else {
+                            if (country.country.isNotEmpty) {
+                              debugPrint('Show update data Country');
+                              return Text(
+                                country.deaths,
+                                style: TextStyle(
+                                  fontSize: 50,
+                                  color: Colors.red,
+                                ),
+                              );
+                            } else {
+                              debugPrint('Show no data');
+                              return Text(
+                                '-',
+                                style: TextStyle(
+                                  fontSize: 50,
+                                  color: Colors.red,
+                                ),
+                              );
+                            }
+                          }
+                        }),
                       ],
                     ),
                   ),
@@ -168,26 +215,50 @@ class PageStatisticCovid extends StatelessWidget {
                         ),
                         BlocBuilder<CountryBloc, Country>(
                             builder: (context, country) {
-                              if (country.country != null) {
-                                debugPrint('Show update data');
-                                return Text(
-                                  country.recovered,
-                                  style: TextStyle(
-                                    fontSize: 46,
-                                    color: Colors.green,
-                                  ),
-                                );
-                              } else {
-                                debugPrint('Show no data');
-                                return Text(
-                                  '000000',
-                                  style: TextStyle(
-                                    fontSize: 46,
-                                    color: Colors.green,
-                                  ),
-                                );
-                              }
-                            }),
+                          if (country is CountryUninitialized) {
+                            debugPrint('Show loading data Country');
+                            return Container(
+                              padding: EdgeInsets.fromLTRB(24, 8, 24, 8),
+                              height: 60,
+                              child: Center(
+                                child: SizedBox(
+                                  child: CircularProgressIndicator(),
+                                  height: 20,
+                                  width: 20,
+                                ),
+                              ),
+                            );
+                          } else if (country is CountryError) {
+                            debugPrint('Show error data Country');
+                            return Text(
+                              '-',
+                              style: TextStyle(
+                                fontSize: 50,
+                                color: Colors.green,
+                              ),
+                            );
+                          } else {
+                            if (country.country.isNotEmpty) {
+                              debugPrint('Show update data Country');
+                              return Text(
+                                country.recovered,
+                                style: TextStyle(
+                                  fontSize: 50,
+                                  color: Colors.green,
+                                ),
+                              );
+                            } else {
+                              debugPrint('Show no data');
+                              return Text(
+                                '-',
+                                style: TextStyle(
+                                  fontSize: 50,
+                                  color: Colors.green,
+                                ),
+                              );
+                            }
+                          }
+                        }),
                       ],
                     ),
                   ),
