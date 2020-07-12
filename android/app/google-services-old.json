@@ -10,36 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:521799410596:android:e0f691a158921648601731",
         "android_client_info": {
-          "package_name": "com.example.aplikasi"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "521799410596-lcfej75gr5e1n6i666pmjvmd5haen9ac.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC952J20q1H-zmuXtP6v9PAu_3G_rRGN8I"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "521799410596-lcfej75gr5e1n6i666pmjvmd5haen9ac.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:521799410596:android:1f03ca72c3154914601731",
-        "android_client_info": {
-          "package_name": "com.riomu.updatecovid"
+          "package_name": "com.riomu.covidupdate"
         }
       },
       "oauth_client": [
